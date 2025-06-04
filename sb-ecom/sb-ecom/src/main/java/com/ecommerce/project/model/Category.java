@@ -1,5 +1,8 @@
 package com.ecommerce.project.model;
 
+import org.springframework.stereotype.Component;
+
+
 public class Category {
     private Long categoryId;
     private String categoryName;
