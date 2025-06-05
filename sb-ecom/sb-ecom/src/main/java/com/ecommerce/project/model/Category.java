@@ -22,7 +22,8 @@ public class Category {
     private Long categoryId;
 
     @NotBlank(message = "Không được để trống")
-    @Size(min = 5, message = "Cần ít nhất 5 ký tự")
+    @Size(min = 5, message = "Cần ít nhất 5 ký tự" +
+            " ")
     private String categoryName;
 
 }
