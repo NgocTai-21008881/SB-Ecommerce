@@ -1,10 +1,12 @@
 package com.ecommerce.project.controller;
 
+import com.ecommerce.project.config.AppContains;
 import com.ecommerce.project.payload.CategoryDTO;
 import com.ecommerce.project.payload.CategoryResponse;
 import com.ecommerce.project.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +23,12 @@ public class CategoryController {
 
     @GetMapping("/public/categories")
     public ResponseEntity<CategoryResponse> getAllCategories(
-            @RequestParam(name = "pageNumber") int pageNumber,
-            @RequestParam(name = "pageSize") int pageSize
-    ) {
-        CategoryResponse categoryResponse = categoryService.getAllCategories(pageNumber, pageSize);
+            @RequestParam(name = "pageNumber", defaultValue = AppContains.PAGE_NUMBER, required = false) int pageNumber,
+            @RequestParam(name = "pageSize",defaultValue = AppContains.PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(name = "sortBy",defaultValue = AppContains.SORT_CATEGORIES_BY, required = false) String sortBy,
+            @RequestParam(name = "sortOrder",defaultValue = AppContains.SORT_DIR, required = false) String sortOrder )
+    {
+        CategoryResponse categoryResponse = categoryService.getAllCategories(pageNumber, pageSize, sortBy, sortOrder);
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK);
     }
 
