@@ -1,13 +1,11 @@
 package com.ecommerce.project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,5 +23,8 @@ public class Category {
     @Size(min = 5, message = "Cần ít nhất 5 ký tự" +
             " ")
     private String categoryName;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
 
 }
