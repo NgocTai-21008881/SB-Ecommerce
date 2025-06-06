@@ -17,10 +17,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
     private String productName;
+    private String image;
     private String description;
     private int quantity;
-    private double price;
-    private double specialPrice;
+    private double price; //100
+    private double discount; //25
+    private double specialPrice; //75
 
     @ManyToOne
     @JoinColumn(name = "category_id")
