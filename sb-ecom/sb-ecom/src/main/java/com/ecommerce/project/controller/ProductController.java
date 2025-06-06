@@ -1,6 +1,7 @@
 package com.ecommerce.project.controller;
 
 import com.ecommerce.project.model.Product;
+import com.ecommerce.project.payload.CategoryDTO;
 import com.ecommerce.project.payload.ProductDTO;
 import com.ecommerce.project.payload.ProductResponse;
 import com.ecommerce.project.service.ProductService;
@@ -45,5 +46,11 @@ public class ProductController {
                                                     @PathVariable Long productId) {
         ProductDTO updateProductDTO = productService.updateProduct(productId, product);
         return new ResponseEntity<>(updateProductDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/admin/products/{productId}")
+    public ResponseEntity<ProductDTO> deleteProduct(@PathVariable Long productId) {
+        ProductDTO deleteProductDTO = productService.deleteProduct(productId);
+        return new ResponseEntity<>(deleteProductDTO, HttpStatus.OK);
     }
 }
